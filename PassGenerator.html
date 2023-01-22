@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+                <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">        
+        <title></title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+*{
+margin:0; 
+padding:0;
+box-sizing:border-box;
+} 
+
+body{
+background:#3C3C48;   
+font-family: 'Montserrat', sans-serif;
+background:#131418;
+}
+
+.container{
+height:450px;
+width:350px;
+background:#212026;
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+border-radius:5px;
+padding:20px;
+}
+
+.container .app-name{
+height:55px;   
+width:100%;
+position:absolute;
+top:0px;
+left:0px;
+color:white;
+padding:20px;
+font-size:17px;
+box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.container .password-box{
+height:50px;   
+width:100%;
+position:relative;
+top:70px;
+border:1px solid white;
+border-radius:5px;
+display:flex;
+align-items:center;
+padding-right:5px;
+}
+
+.container .password-box input{
+all:unset;
+height:50px;
+width:85%;
+border-radius:5px;
+padding-left:15px;
+color:white;
+}
+
+.container .password-box #copy-btn{
+color:white;       
+}
+
+.container .indicator-box{
+height:6px;   
+width:100%;
+position:relative;
+top:80px;
+z-index:1;
+}
+
+.container .indicator-box div:nth-child(1){
+height:3px;        
+width:100%;
+background:grey;
+border-radius:30px;
+position:absolute;
+}
+
+.container .indicator-box .indicator{
+height:3px;        
+width:35%;
+background:red;
+position:absolute;
+top:0;
+border-radius:30px;
+transition:all .2s;
+}
+
+.password-length-box{
+height:45px;       
+width:88%;
+position:absolute;
+top:175px;
+}
+
+.password-length-box input{
+all:unset;   
+height:4px;
+width:100%;
+background:white;
+border-radius:30px;
+}
+
+.password-length-box input::-webkit-slider-thumb{
+-webkit-appearance:none;
+height:20px;
+width:20px;
+border-radius:100%;
+background:#3C3C48;   
+border:5px solid #202126;
+box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.password-length-box span{
+font-weight:600;       
+color:white;
+font-size:14px;
+}
+
+.password-length-box .pass-length-value{
+float:right;      
+color:white;
+font-weight:600;
+font-size:16px;
+}
+
+.settings{
+height:110px;
+width:100%;
+position:relative;
+top:170px;
+}
+
+.settings div{
+height:55px;        
+width:50%;
+float:left;
+display:flex;
+justify-content:center;
+align-items:center;
+color:white;
+font-weight:600;
+font-size:14px;
+}
+
+.settings .lowercase #lowercase,.settings .numbers #numbers{
+position:relative;   
+left:-15px;
+}
+
+.settings .lowercase span,.settings .numbers span{
+position:relative;      
+left:-8px;
+}
+
+.settings .uppercase #uppercase,.settings .symbols #symbols{
+position:relative;   
+left:5px;
+}
+
+.settings .uppercase span,.settings .symbols span{
+position:relative;   
+left:10px;       
+}
+
+.settings .lowercase #lowercase{
+pointer-events:none;        
+}
+
+.container .generate-btn{
+all:unset;
+height:45px;
+width:100%;
+background:#3C3C48;   
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+border-radius:3px;
+font-weight:600;
+position:relative;
+top:7px;
+cursor:pointer;
+}
+
+.pass-setting-title{
+position:relative;
+font-weight:600;
+font-size:14px;
+position:relative;
+top:168px;
+color:#F8F8FF;
+}
+
+.container .indicator-box .indicator#weak{
+background:red; 
+width:35%;
+}
+
+.container .indicator-box .indicator#medium{
+background:orange;
+width:70%;
+}
+
+.container .indicator-box .indicator#strong{
+background:green;   
+width:100%;
+}
+</style>        
+</head>
+
+<body>
+<div class="container">
+  <div class="app-name">
+      <h4>Password Generator</h4>    
+  </div> 
+  <div class="password-box">
+     <input type="text" class="pass-value" value="43$^¢hg4b" readonly> 
+     <i class="material-icons" id="copy-btn">content_copy</i>
+  </div>
+  <div class="indicator-box">
+       <div></div>
+      <div class="indicator"></div>
+  </div>
+  <p class="pass-setting-title">Password Settings</p>
+  <div class="password-length-box">
+      <span>Password Length</span>   
+      <span class="pass-length-value">6</span>
+      <input type="range" class="pass-slider" min="6" max="32" value="6">
+  </div>
+  <div class="settings">
+    <div class="lowercase">
+       <input type="checkbox" id="lowercase" checked> 
+       <span>Lowercase(a-z)</span>
+    </div>    
+  <div class="uppercase">
+          <input type="checkbox" id="uppercase">
+          <span>Uppercase(A-Z)</span>
+  </div>    
+ <div class="numbers">
+         <input type="checkbox" id="numbers">
+         <span>Numbers(0-9)</span>
+ </div>
+ <div class="symbols">
+         <input type="checkbox" id="symbols">
+         <span>Symbols(!-$^+)</span>
+ </div>
+ <button class="generate-btn">Generate Password</button>
+  </div>
+</div>
+<script>
+let passValue = document.querySelector('.password-box input');
+let copyBtn = document.querySelector('.password-box #copy-btn');
+let passIndicator = document.querySelector('.indicator-box .indicator');
+let passLength = document.querySelector('.password-length-box input');
+let passLengthText = document.querySelector('.password-length-box .pass-length-value');
+let options = document.querySelectorAll('.settings div input');
+let generateBtn = document.querySelector('.generate-btn');
+
+ const characters = {
+uppercase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+lowercase: "abcdefghijklmnopqrstuvwxyz",
+numbers: "0123456789",
+symbols: "!@#$%^&*()_+~`|}{[]:;?><,./-="
+};
+
+let generatePassword =()=>{
+let strongPassword = '';
+let randomPassword = '';
+let length = passLength.value;
+options.forEach((option)=>{
+   if(option.checked){
+      strongPassword += characters[option.id]  
+   } 
+})
+   for(let i=0;i<length;i++){
+     randomPassword += strongPassword[Math.floor(Math.random() * strongPassword.length)];   
+   }
+passValue.value = randomPassword;
+}
+
+copyBtn.addEventListener('click',()=>{
+  navigator.clipboard.writeText(passValue.value); 
+})
+
+let updateIndicator =()=>{
+ passIndicator.id = passLength.value <= 8 ? 'weak' : passLength.value <= 16 ? 'medium' : 'strong';
+}
+
+passLength.addEventListener('input', () => {
+        generatePassword();
+        updateIndicator()
+        passLengthText.innerHTML = passLength.value;
+})
+
+generatePassword();
+generateBtn.addEventListener('click',generatePassword)
+</script>
+</body>
+
+</html>
